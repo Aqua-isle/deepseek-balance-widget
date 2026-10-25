@@ -1,0 +1,13 @@
+# 构建产物：发版走 GitHub Releases，不进仓库
+build/
+dist/
+*.spec
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 本地调试 / 临时截图
+screenshots/_*
+*.log
+*.tmp
