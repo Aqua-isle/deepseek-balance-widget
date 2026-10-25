@@ -84,6 +84,13 @@ def main() -> int:
         code = build(kind, icon, console)
         if code != 0:
             return code
+
+    # 说明文件用 ASCII 名：GitHub 上传 release 附件时会把纯中文文件名清成 default.txt
+    manual_src = HERE / "manual-zh.txt"
+    if manual_src.exists():
+        shutil.copyfile(manual_src, HERE / "dist" / manual_src.name)
+        print(f"[build] 说明文件: dist\\{manual_src.name}")
+
     print("\n[build] 全部完成。记得跑 python tools\\verify_build.py 复核 Key 没被打进去。")
     return 0
 

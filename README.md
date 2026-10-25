@@ -495,10 +495,12 @@ DeepSeekBalance\
 ├── dsh_state.py                 # 读 DSH 会话缓存、按 token 算钱（可单独跑）
 ├── build_exe.py                 # 打包成 exe（PyInstaller）
 ├── sign_exe.py                  # 给 exe 签名（自签名 / PFX / 证书存储）
-├── dist\                        # 打包产物（exe + 文件夹版 + 使用说明）
+├── manual-zh.txt                # 给拿到 exe 的人看的两分钟说明（打包时拷进 dist\）
+├── dist\                        # 打包产物（exe + 文件夹版 + 说明）
 ├── tools\follow_dsh.py          # 源码模式的跟随入口（转发给 follow_main）
 ├── tools\verify_build.py        # 打包产物安全检查（Key 有没有被打进去）
 ├── tools\privacy_probe.py       # 隐私探针（DSH 会话内容有没有被读/被写）
+├── tools\contrast_check.py      # 配色对比度（WCAG + ΔE2000 + 色弱模拟）
 ├── tools\input_probe.py         # 鼠标事件取证工具
 └── tools\shot.ps1               # 只读截图（不移动指针）
 ```
@@ -519,7 +521,10 @@ python tools\verify_build.py          :: 复核产物里没有 Key
 | --- | --- | --- |
 | `DeepSeekBalance.exe` | 12 MB | 单文件，拷一个就能跑（运行时会解压到系统临时目录） |
 | `DeepSeekBalance-portable\` | 25 MB | 文件夹版，不解压、启动更快，整个目录一起拷 |
-| `使用说明.txt` | — | 给拿到 exe 的人看的两分钟说明 |
+| `manual-zh.txt` | 3 KB | 给拿到 exe 的人看的两分钟说明 |
+
+> 说明文件叫 `manual-zh.txt` 而不是 `使用说明.txt`：**GitHub 上传 release 附件时会把纯中文文件名清成 `default.txt`**
+> （实测过，字节完全一致、只有名字被换）。文件名用 ASCII 就不会被改名，内容照样是中文。
 
 **没有 Key 被打进去**，这是设计上的硬约束：
 
